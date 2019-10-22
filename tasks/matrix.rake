@@ -4,9 +4,7 @@ namespace :matrix do
       gemfile = File.expand_path(gemfile)
       ENV['BUNDLE_GEMFILE'] = gemfile
 
-      if ENV['CLEAN'] && File.exist?("#{gemfile}.lock")
-        system "rm #{gemfile}.lock"
-      end
+      system "rm #{gemfile}.lock" if ENV['CLEAN'] && File.exist?("#{gemfile}.lock")
 
       unless File.exist?("#{gemfile}.lock")
         args = ['--quiet']

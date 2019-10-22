@@ -69,8 +69,8 @@ module Middleman
       end
 
       Contract ::Middleman::Sitemap::Resource => Bool
-      def processible? r
-        !r.is_a?(Resource) && !r.file_descriptor.nil? && interface.processible?(r.source_file)
+      def processible? resource
+        !resource.is_a?(Resource) && !resource.file_descriptor.nil? && interface.processible?(resource.source_file)
       end
 
       Contract String => Bool
@@ -125,7 +125,7 @@ module Middleman
 
             sprockets_resource
           end
-        rescue => e
+        rescue StandardError => e
           logger.error("== Sprockets Debug: #{resource}")
           logger.error("== Sprockets Debug: #{sprockets_resource}") if defined?(sprockets_resource)
           raise e

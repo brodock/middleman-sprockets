@@ -1,5 +1,4 @@
-# encoding: utf-8
-$LOAD_PATH << File.expand_path('../../lib', __FILE__)
+$LOAD_PATH << File.expand_path('../lib', __dir__)
 
 require 'simplecov'
 SimpleCov.command_name 'rspec'
@@ -11,6 +10,6 @@ Bundler.require :default, :test, :development
 
 require 'middleman-sprockets/extension'
 
-Dir.glob(File.expand_path('../support/*', __FILE__)).each { |f| require_relative f }
+Dir.glob(File.expand_path('support/*', __dir__)).each { |f| require_relative f }
 
 include Middleman::Sprockets

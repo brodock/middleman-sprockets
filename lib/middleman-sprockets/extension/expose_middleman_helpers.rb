@@ -7,15 +7,17 @@ module Middleman
         end
 
         def method_missing method, *args, &block
-          if mm_context.respond_to?(method)
-            return mm_context.send method, *args, &block
-          end
+          return mm_context.send method, *args, &block if mm_context.respond_to?(method)
 
           super
         end
 
         def respond_to? method, include_private=false
           super || mm_context.respond_to?(method, include_private)
+        end
+
+        def respond_to_missing? method, *args
+          mm_context.respond_to?(method) || super
         end
       end
     end

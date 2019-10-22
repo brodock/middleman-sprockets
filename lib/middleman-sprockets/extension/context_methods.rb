@@ -7,7 +7,7 @@ module Middleman
         end
 
         def current_path
-          current_resource.destination_path if current_resource
+          current_resource&.destination_path
         end
 
         def asset_path path, options={}
@@ -24,19 +24,16 @@ module Middleman
             }.fetch(options[:type], options[:type])
           end
 
-          if File.extname(path).empty?
-            path << { js: '.js', css: '.css' }.fetch(kind, '')
-          end
+          path << { js: '.js', css: '.css' }.fetch(kind, '') if File.extname(path).empty?
 
           if app.extensions[:sprockets].check_asset(path)
             link_asset(path)
 
-            File.join *[app.config[:http_prefix],
-                        app.extensions[:sprockets].sprockets_asset_path(env[path])].compact
+            File.join(*[app.config[:http_prefix],
+                        app.extensions[:sprockets].sprockets_asset_path(env[path])].compact)
           else
             app.asset_path(kind, path)
           end
-
         end
       end
     end

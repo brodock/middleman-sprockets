@@ -36,7 +36,7 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = false
 end
 
-task test: [:destroy_sass_cache, :rubocop, :cucumber, :spec]
+task test: %i[destroy_sass_cache rubocop cucumber spec]
 task default: :test
 
 ## removal candidates

@@ -1,5 +1,10 @@
 AllCops:
   DisplayCopNames: true
+  TargetRubyVersion: 2.5
+  Exclude:
+    - "vendor/**/*"
+    - "**/tmp/**/*"
+    - "gemfiles/*"
 
 
 # Style ------------------------------------
@@ -44,6 +49,18 @@ Style/PercentLiteralDelimiters:
       '%':  '{}'
       '%w': '[]'
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/MixinUsage:
+  Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
 # Metrics ----------------------------------
 
 Metrics/LineLength:
@@ -55,11 +72,21 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Enabled: false
 
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+# Naming -----------------------------------
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
 
 # Lint -------------------------------------
 
 Lint/EndAlignment:
-  AlignWith: variable
+  EnforcedStyleAlignWith: variable
 
 Lint/AmbiguousRegexpLiteral:
   Exclude: ["features/step_definitions/**/*"]

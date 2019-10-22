@@ -37,7 +37,7 @@ gem 'listen', '~> 3.0.6' if RUBY_VERSION < '2.2'
 
 # Code Quality
 group :test do
-  gem 'rubocop',    '~> 0.37.2', require: false
+  gem 'rubocop',    '~> 0.70.0', require: false
   gem 'simplecov',  '~> 0.9',    require: false
   gem 'coveralls',  '~> 0.8',    require: false
   gem 'codeclimate-test-reporter', '~> 0.3', require: false
