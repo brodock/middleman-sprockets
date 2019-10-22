@@ -4,27 +4,26 @@ sudo: false
 env: TEST=true
 
 rvm:
-  - 2.2
-  - 2.3.4
-  - 2.4.1
   - ruby-head
+  - 2.6.3
+  - 2.5.5
 
 gemfile:
   - gemfiles/middleman-4.1.gemfile
 
 matrix:
   include:
-  - rvm: 2.4.1
+  - rvm: 2.5.5
     gemfile: gemfiles/middleman-head.gemfile
     env: SKIP_ASSET_HASH=true MIDDLEMAN_HEAD=true
-  - rvm: 2.4.1
+  - rvm: 2.5.5
     gemfile: gemfiles/middleman-4.0.gemfile
     env: SKIP_ASSET_HASH=true
-  - rvm: 2.4.1
+  - rvm: 2.5.5
     gemfile: gemfiles/sprockets-4.0.gemfile
     env: SKIP_ASSET_HASH=true
 
   allow_failures:
     - rvm: ruby-head
-    - rvm: 2.4.1
+    - rvm: 2.5.5
       gemfile: gemfiles/sprockets-4.0.gemfile
