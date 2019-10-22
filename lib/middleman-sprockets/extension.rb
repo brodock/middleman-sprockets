@@ -1,4 +1,5 @@
 require 'sprockets'
+require 'sprockets/sassc_processor'
 require 'middleman-core/contracts'
 require 'middleman-core/sitemap/resource'
 
@@ -28,7 +29,7 @@ module Middleman
         @environment = ::Sprockets::Environment.new
         @interface   = Interface.new options, @environment
 
-        use_sassc_if_available
+        register_sassc_processor
       end
 
       Contract Any
@@ -140,17 +141,11 @@ module Middleman
           end
         end
 
-        def use_sassc_if_available
-          if defined?(::SassC)
-            require 'sprockets/sassc_processor'
-            environment.register_transformer 'text/sass', 'text/css', ::Sprockets::SasscProcessor.new
-            environment.register_transformer 'text/scss', 'text/css', ::Sprockets::ScsscProcessor.new
+        def register_sassc_processor
+          environment.register_transformer 'text/sass', 'text/css', ::Sprockets::SasscProcessor.new
+          environment.register_transformer 'text/scss', 'text/css', ::Sprockets::ScsscProcessor.new
 
-            logger.info '== Sprockets will render css with SassC'
-          end
-        rescue LoadError
-          logger.info "== Sprockets will render css with ruby sass\n" \
-                      '   consider using Sprockets 4.x to render with SassC'
+          logger.info '== Sprockets will render css with SassC'
         end
 
         def source_file_relative_to_root resource

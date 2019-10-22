@@ -87,7 +87,22 @@ module Middleman
           end
 
           def css_response
-            ::Sass::SyntaxError.exception_to_css(@error)
+            exception_to_css(@error)
+          end
+
+          def exception_to_css exception
+            header = "#{exception.class}: #{exception.message}"
+
+            <<~CSS
+              /*
+              #{header.gsub('*/', '*\\/')}
+                            Backtrace:\n#{e.backtrace.join("\n").gsub('*/', '*\\/')}
+              */
+              body:before {
+                white-space: pre;
+                font-family: monospace;
+                content: "#{header.gsub('"', '\"').gsub("\n", '\\A ')}"; }
+            CSS
           end
 
       end
