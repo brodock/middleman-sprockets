@@ -9,7 +9,8 @@ rvm:
   - 2.5.5
 
 gemfile:
-  - gemfiles/middleman-4.1.gemfile
+  - gemfiles/middleman-4.2.gemfile
+  - gemfiles/middleman-4.3.gemfile
 
 matrix:
   include:
@@ -17,10 +18,10 @@ matrix:
     gemfile: gemfiles/middleman-head.gemfile
     env: SKIP_ASSET_HASH=true MIDDLEMAN_HEAD=true
   - rvm: 2.5.5
-    gemfile: gemfiles/middleman-4.0.gemfile
+    gemfile: gemfiles/middleman-4.1.gemfile
     env: SKIP_ASSET_HASH=true
   - rvm: 2.5.5
-    gemfile: gemfiles/sprockets-4.0.gemfile
+    gemfile: gemfiles/sprockets-4.1.gemfile
     env: SKIP_ASSET_HASH=true
 
   allow_failures:
